@@ -2,7 +2,7 @@
 
 > Arduino programming ke liye complete C++ guide — Hindi comments ke saath!
 
-**Live Website:** https://github.com/blackking00/arduino-notes-website
+**Live Website:** [https://yourusername.github.io/arduino-cpp-notes](https://yourusername.github.io/arduino-cpp-notes)
 
 ---
 
