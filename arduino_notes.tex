@@ -1,0 +1,1136 @@
+\documentclass[12pt,a4paper]{article}
+
+% XeLaTeX packages
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{mdframed}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,skins,breakable}
+
+% Page geometry
+\geometry{
+  a4paper,
+  top=2.5cm,
+  bottom=2.5cm,
+  left=2.5cm,
+  right=2.5cm
+}
+
+% Fonts - using safe defaults for XeLaTeX
+\setmainfont{DejaVu Serif}
+\setmonofont{DejaVu Sans Mono}
+\setsansfont{DejaVu Sans}
+
+% Language
+\setmainlanguage{english}
+
+% Colors
+\definecolor{arduinoBlue}{RGB}{0, 114, 178}
+\definecolor{arduinoTeal}{RGB}{0, 158, 115}
+\definecolor{codeBackground}{RGB}{245, 245, 245}
+\definecolor{codeBorder}{RGB}{0, 114, 178}
+\definecolor{commentColor}{RGB}{0, 128, 0}
+\definecolor{keywordColor}{RGB}{0, 0, 200}
+\definecolor{stringColor}{RGB}{180, 0, 0}
+\definecolor{noteBackground}{RGB}{255, 255, 200}
+\definecolor{warningBackground}{RGB}{255, 220, 200}
+\definecolor{tipBackground}{RGB}{200, 240, 200}
+\definecolor{headerColor}{RGB}{0, 80, 140}
+
+% Listings style for Arduino/C++
+\lstdefinestyle{arduino}{
+  language=C++,
+  backgroundcolor=\color{codeBackground},
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{keywordColor}\bfseries,
+  commentstyle=\color{commentColor}\itshape,
+  stringstyle=\color{stringColor},
+  numberstyle=\tiny\color{gray},
+  numbers=left,
+  stepnumber=1,
+  numbersep=8pt,
+  frame=single,
+  rulecolor=\color{codeBorder},
+  breaklines=true,
+  breakatwhitespace=false,
+  showspaces=false,
+  showstringspaces=false,
+  tabsize=2,
+  captionpos=b,
+  morekeywords={
+    pinMode, digitalWrite, digitalRead, analogWrite, analogRead,
+    delay, delayMicroseconds, millis, micros,
+    Serial, begin, print, println, available, read,
+    LED_BUILTIN, INPUT, OUTPUT, INPUT_PULLUP,
+    HIGH, LOW, true, false, void,
+    setup, loop, int, bool, float, char, String,
+    if, else, for, while, do, return,
+    attachInterrupt, detachInterrupt, RISING, FALLING, CHANGE,
+    tone, noTone, pulseIn, shiftOut, shiftIn,
+    Wire, Servo, write, attach
+  }
+}
+
+\lstset{style=arduino}
+
+% tcolorbox styles
+\tcbset{
+  codebox/.style={
+    colback=codeBackground,
+    colframe=arduinoBlue,
+    fonttitle=\bfseries\sffamily,
+    title=#1,
+    breakable,
+    enhanced
+  },
+  notebox/.style={
+    colback=noteBackground,
+    colframe=yellow!60!black,
+    fonttitle=\bfseries\sffamily,
+    title=Yaad Rakho (Remember),
+    breakable
+  },
+  tipbox/.style={
+    colback=tipBackground,
+    colframe=arduinoTeal,
+    fonttitle=\bfseries\sffamily,
+    title=Tip,
+    breakable
+  },
+  warnbox/.style={
+    colback=warningBackground,
+    colframe=red!70!black,
+    fonttitle=\bfseries\sffamily,
+    title=Dhyan Do (Warning),
+    breakable
+  }
+}
+
+% Section formatting
+\titleformat{\section}
+  {\Large\bfseries\sffamily\color{headerColor}}
+  {\thesection}{1em}{}[\titlerule]
+
+\titleformat{\subsection}
+  {\large\bfseries\sffamily\color{arduinoBlue}}
+  {\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\sffamily\color{arduinoTeal}}
+  {\thesubsubsection}{1em}{}
+
+% Header/Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{arduinoBlue}Arduino C++ Notes}
+\fancyhead[R]{\small\sffamily\color{arduinoBlue}Complete Guide}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\headrulecolor{arduinoBlue}
+
+% Custom commands
+\newcommand{\keyword}[1]{\textcolor{keywordColor}{\texttt{\textbf{#1}}}}
+\newcommand{\func}[1]{\textcolor{arduinoBlue}{\texttt{#1()}}}
+\newcommand{\pin}[1]{\textcolor{arduinoTeal}{\textbf{Pin #1}}}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=arduinoBlue,
+  urlcolor=arduinoTeal
+}
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+% Title Page
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+  
+  {\Huge\bfseries\sffamily\color{arduinoBlue} Arduino C++ Notes}\\[0.5cm]
+  {\Large\sffamily\color{arduinoTeal} Complete Programming Guide}\\[0.3cm]
+  {\large\sffamily\color{gray} Beginner se Advanced tak}\\[2cm]
+  
+  \begin{tcolorbox}[colback=arduinoBlue!10, colframe=arduinoBlue, width=0.8\textwidth]
+    \centering
+    \large\sffamily
+    Is notebook mein Arduino ke liye C++ ke\\
+    sabhi important concepts aur examples hain.\\[0.3cm]
+    \textbf{Topics:} Digital I/O $\bullet$ Analog $\bullet$ Serial $\bullet$\\
+    Sensors $\bullet$ Motors $\bullet$ Interrupts $\bullet$ Timing
+  \end{tcolorbox}
+  
+  \vfill
+  {\large\sffamily\color{gray} Version 1.0}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{Arduino Basics — Shuruat}
+% ============================================================
+
+\subsection{Arduino Program ki Structure}
+
+Har Arduino program mein \textbf{do main functions} hote hain:
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{arduinoBlue!20}
+\textbf{Function} & \textbf{Kab Chalta Hai} & \textbf{Kaam} \\
+\hline
+\texttt{setup()} & Sirf \textbf{ek baar} — start par & Sab kuch initialize karna \\
+\hline
+\texttt{loop()} & \textbf{Baar baar} — hamesha & Main kaam karna \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{tcolorbox}[codebox=Ek Basic Arduino Program]
+\begin{lstlisting}
+void setup() {
+  // Yeh sirf ek baar chalega jab Arduino start hoga
+  pinMode(LED_BUILTIN, OUTPUT); // Pin 13 ko output banao
+}
+
+void loop() {
+  // Yeh baar baar chalta rahega hamesha
+  digitalWrite(LED_BUILTIN, HIGH); // LED ON
+  delay(1000);                      // 1 second ruko
+  digitalWrite(LED_BUILTIN, LOW);  // LED OFF
+  delay(1000);                      // 1 second ruko
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\subsubsection{Keywords ka Matlab}
+
+\begin{itemize}[leftmargin=*]
+  \item \keyword{void} — Function kuch return nahi karta (khali haath wapas)
+  \item \keyword{setup} — Function ka naam (Arduino ka special naam)
+  \item \texttt{()} — Function ka darwaza, andar parameters jaate hain
+  \item \texttt{\{\}} — Function ka body, andar sab kaam likhte hain
+  \item \texttt{;} — Har statement ke end mein lagta hai (zaroori!)
+\end{itemize}
+
+\begin{tcolorbox}[notebox]
+\texttt{setup()} aur \texttt{loop()} Arduino mein \textbf{reserved names} hain. Inhe change mat karo — Arduino inhe automatically dhundta hai!
+\end{tcolorbox}
+
+\newpage
+
+% ============================================================
+\section{Digital Input / Output}
+% ============================================================
+
+\subsection{LED Blink — Simple On/Off}
+
+\subsubsection{Concept}
+\begin{itemize}
+  \item \keyword{pinMode(pin, mode)} — Pin ko INPUT ya OUTPUT set karo
+  \item \keyword{digitalWrite(pin, value)} — Pin ko HIGH (5V) ya LOW (0V) karo
+  \item \keyword{delay(ms)} — Milliseconds tak ruko
+\end{itemize}
+
+\begin{tcolorbox}[codebox=Example 1: LED Blink]
+\begin{lstlisting}
+// Pin 13 par LED lagaao
+int ledPin = 13; // Variable — pin number store karta hai
+
+void setup() {
+  pinMode(ledPin, OUTPUT); // ledPin ko output banao
+}
+
+void loop() {
+  digitalWrite(ledPin, HIGH); // LED ON karo
+  delay(500);                  // 0.5 second ruko
+  digitalWrite(ledPin, LOW);  // LED OFF karo
+  delay(500);                  // 0.5 second ruko
+  // Yeh loop repeat hoga — LED blink karega
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\subsection{Multiple LEDs}
+
+\begin{tcolorbox}[codebox=Example 2: Teen LED ka Chase Effect]
+\begin{lstlisting}
+// Teen alag pins par teen LED
+int led1 = 11;
+int led2 = 12;
+int led3 = 13;
+
+void setup() {
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+}
+
+void loop() {
+  // Ek ek karke LED on karo — chase effect
+  digitalWrite(led1, HIGH);
+  delay(200);
+  digitalWrite(led1, LOW);
+
+  digitalWrite(led2, HIGH);
+  delay(200);
+  digitalWrite(led2, LOW);
+
+  digitalWrite(led3, HIGH);
+  delay(200);
+  digitalWrite(led3, LOW);
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\subsection{Button se LED Control}
+
+\subsubsection{digitalRead — Button Press Padhna}
+
+\begin{tcolorbox}[codebox=Example 3: Button se LED On/Off]
+\begin{lstlisting}
+int buttonPin = 2;  // Button pin 2 par
+int ledPin    = 13; // LED pin 13 par
+int buttonState;    // Variable — button ki state store karta hai
+
+void setup() {
+  pinMode(buttonPin, INPUT);  // Button = INPUT
+  pinMode(ledPin, OUTPUT);    // LED = OUTPUT
+}
+
+void loop() {
+  buttonState = digitalRead(buttonPin); // Button padhо
+
+  if (buttonState == HIGH) {      // Agar button dabaya
+    digitalWrite(ledPin, HIGH);   // LED ON
+  } else {                        // Warna
+    digitalWrite(ledPin, LOW);    // LED OFF
+  }
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\begin{tcolorbox}[tipbox]
+\textbf{INPUT\_PULLUP} use karo agar external resistor nahi hai:\\
+\texttt{pinMode(buttonPin, INPUT\_PULLUP);}\\
+Is case mein logic ulta hoga — button dabane par \texttt{LOW} aayega.
+\end{tcolorbox}
+
+\begin{tcolorbox}[codebox=Example 4: Toggle Button (Press karo ON — Phir Press karo OFF)]
+\begin{lstlisting}
+int buttonPin = 2;
+int ledPin    = 13;
+bool ledState = false;    // LED abhi OFF hai
+bool lastButton = false;  // Pehle button ka state
+
+void setup() {
+  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  bool currentButton = (digitalRead(buttonPin) == LOW); // Dabaya?
+
+  // Sirf tab toggle karo jab nayi press ho
+  if (currentButton == true && lastButton == false) {
+    ledState = !ledState;              // ON hoga toh OFF, OFF hoga toh ON
+    digitalWrite(ledPin, ledState);   // LED update karo
+  }
+
+  lastButton = currentButton;
+  delay(50); // Debounce — bounce se bachao
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\newpage
+
+% ============================================================
+\section{Analog Input / Output}
+% ============================================================
+
+\subsection{Analog Read — Sensor Value Padhna}
+
+Arduino mein \textbf{Analog pins (A0-A5)} 0 se 1023 tak value dete hain.
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\rowcolor{arduinoBlue!20}
+\textbf{Voltage} & \textbf{analogRead() Value} \\
+\hline
+0V & 0 \\
+\hline
+2.5V & 512 \\
+\hline
+5V & 1023 \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{tcolorbox}[codebox=Example 5: Potentiometer (Variable Resistor) se LED Control]
+\begin{lstlisting}
+int potPin = A0;   // Potentiometer A0 par lagaao
+int ledPin = 9;    // LED PWM pin par (3,5,6,9,10,11)
+int potValue;      // Potentiometer ki value (0-1023)
+int brightness;    // LED ki brightness (0-255)
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600); // Serial monitor shuru karo
+}
+
+void loop() {
+  potValue   = analogRead(potPin);      // 0 se 1023 tak padhо
+  brightness = potValue / 4;            // 0-1023 ko 0-255 mein badlo
+  analogWrite(ledPin, brightness);      // LED ki brightness set karo
+
+  Serial.print("Pot Value: ");
+  Serial.print(potValue);
+  Serial.print(" | Brightness: ");
+  Serial.println(brightness);
+
+  delay(100);
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\begin{tcolorbox}[notebox]
+\textbf{analogWrite()} sirf PWM pins par kaam karta hai:\\
+Arduino Uno mein: Pin \textbf{3, 5, 6, 9, 10, 11} (tilde \textasciitilde{} sign se pehchano)
+\end{tcolorbox}
+
+\subsection{map() Function — Value Range Badalna}
+
+\begin{tcolorbox}[codebox=Example 6: map() se Temperature Display]
+\begin{lstlisting}
+int tempPin = A1;  // Temperature sensor A1 par
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int rawValue = analogRead(tempPin); // 0-1023
+
+  // map(value, fromLow, fromHigh, toLow, toHigh)
+  // 0-1023 ko 0-100 degree mein badlo
+  int temperature = map(rawValue, 0, 1023, 0, 100);
+
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.println(" C");
+
+  delay(500);
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\newpage
+
+% ============================================================
+\section{Serial Communication}
+% ============================================================
+
+\subsection{Serial Monitor se Baat Karna}
+
+\begin{tcolorbox}[codebox=Example 7: Serial Monitor par Data Print Karna]
+\begin{lstlisting}
+int sensorPin = A0;
+
+void setup() {
+  Serial.begin(9600); // 9600 baud rate par serial shuru karo
+  Serial.println("Arduino Ready!"); // Ek baar print karo
+}
+
+void loop() {
+  int value = analogRead(sensorPin);
+
+  Serial.print("Value = ");   // Bina newline ke print karo
+  Serial.println(value);      // Value print karo + newline
+
+  delay(1000);
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\subsection{Serial se Input Lena}
+
+\begin{tcolorbox}[codebox=Example 8: Computer se LED Control karo]
+\begin{lstlisting}
+int ledPin = 13;
+char command; // Ek character store karega
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+  Serial.println("Commands: 'H' = ON, 'L' = OFF");
+}
+
+void loop() {
+  if (Serial.available() > 0) { // Koi data aaya hai?
+    command = Serial.read();    // Ek character padhо
+
+    if (command == 'H') {
+      digitalWrite(ledPin, HIGH);
+      Serial.println("LED ON!");
+    }
+    else if (command == 'L') {
+      digitalWrite(ledPin, LOW);
+      Serial.println("LED OFF!");
+    }
+    else {
+      Serial.println("Invalid command!");
+    }
+  }
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\newpage
+
+% ============================================================
+\section{Variables aur Data Types}
+% ============================================================
+
+\subsection{C++ mein Data Types}
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\rowcolor{arduinoBlue!20}
+\textbf{Type} & \textbf{Size} & \textbf{Range} & \textbf{Example} \\
+\hline
+\texttt{int} & 2 bytes & -32768 to 32767 & \texttt{int x = 10;} \\
+\hline
+\texttt{long} & 4 bytes & -2B to 2B & \texttt{long t = 100000;} \\
+\hline
+\texttt{float} & 4 bytes & Decimal numbers & \texttt{float v = 3.14;} \\
+\hline
+\texttt{bool} & 1 bit & true / false & \texttt{bool on = true;} \\
+\hline
+\texttt{char} & 1 byte & One character & \texttt{char c = 'A';} \\
+\hline
+\texttt{String} & Variable & Text & \texttt{String s = "Hello";} \\
+\hline
+\texttt{byte} & 1 byte & 0 to 255 & \texttt{byte b = 255;} \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{tcolorbox}[codebox=Example 9: Variables ka Use]
+\begin{lstlisting}
+int    counter = 0;      // Poora number — counter ke liye
+float  voltage = 0.0;    // Decimal number — voltage ke liye
+bool   isOn    = false;  // Sirf true ya false
+char   grade   = 'A';    // Ek akshar
+String name    = "LED";  // Text
+long   timer   = 0;      // Bada number — time ke liye
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  counter++;  // counter = counter + 1 (shortcut)
+
+  int raw = analogRead(A0);
+  voltage = raw * (5.0 / 1023.0); // 0-1023 ko voltage mein badlo
+
+  Serial.print("Count: "); Serial.println(counter);
+  Serial.print("Voltage: "); Serial.println(voltage);
+
+  delay(1000);
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\subsection{Arrays — Kai Values Ek Saath}
+
+\begin{tcolorbox}[codebox=Example 10: Array se Multiple LEDs Control]
+\begin{lstlisting}
+// Array — kai values ek group mein
+int ledPins[] = {8, 9, 10, 11, 12, 13}; // 6 LEDs ke pins
+int numLeds   = 6;                        // Kitne LEDs hain
+
+void setup() {
+  // for loop se sabhi pins setup karo
+  for (int i = 0; i < numLeds; i++) {
+    pinMode(ledPins[i], OUTPUT); // ledPins[0], [1], [2]...
+  }
+}
+
+void loop() {
+  // Ek ek karke ON karo
+  for (int i = 0; i < numLeds; i++) {
+    digitalWrite(ledPins[i], HIGH);
+    delay(100);
+  }
+
+  // Ek ek karke OFF karo
+  for (int i = numLeds - 1; i >= 0; i--) {
+    digitalWrite(ledPins[i], LOW);
+    delay(100);
+  }
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\newpage
+
+% ============================================================
+\section{Control Structures — Decision aur Loops}
+% ============================================================
+
+\subsection{if / else if / else}
+
+\begin{tcolorbox}[codebox=Example 11: Light Sensor se Automatic LED]
+\begin{lstlisting}
+int ldrPin  = A0; // LDR (Light sensor) A0 par
+int ledPin  = 13;
+int ldrValue;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  ldrValue = analogRead(ldrPin); // 0 = andhera, 1023 = ujala
+
+  if (ldrValue < 300) {
+    // Bahut andhera
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Dark - LED ON");
+  }
+  else if (ldrValue < 700) {
+    // Theek thak roshni
+    Serial.println("Normal light");
+  }
+  else {
+    // Bahut roshan
+    digitalWrite(ledPin, LOW);
+    Serial.println("Bright - LED OFF");
+  }
+
+  delay(500);
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\subsection{for Loop}
+
+\begin{tcolorbox}[codebox=Example 12: for Loop se LED Fade In/Out]
+\begin{lstlisting}
+int ledPin = 9; // PWM pin zaroori hai
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  // Fade IN: 0 se 255 tak brightness badhao
+  for (int brightness = 0; brightness <= 255; brightness++) {
+    analogWrite(ledPin, brightness);
+    delay(10); // Thoda ruko har step par
+  }
+
+  // Fade OUT: 255 se 0 tak brightness ghataо
+  for (int brightness = 255; brightness >= 0; brightness--) {
+    analogWrite(ledPin, brightness);
+    delay(10);
+  }
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\subsection{while Loop}
+
+\begin{tcolorbox}[codebox=Example 13: while Loop — Button Dabne tak Wait Karo]
+\begin{lstlisting}
+int buttonPin = 2;
+int ledPin    = 13;
+
+void setup() {
+  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  Serial.println("Button dabao...");
+
+  // Jab tak button nahi daba, yahan ruko
+  while (digitalRead(buttonPin) == HIGH) {
+    // Kuch mat karo — bas wait karo
+    delay(10);
+  }
+
+  // Button dab gaya!
+  Serial.println("Button daba gaya!");
+  digitalWrite(ledPin, HIGH);
+  delay(1000);
+  digitalWrite(ledPin, LOW);
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\newpage
+
+% ============================================================
+\section{Functions Banana — Khud ka Function}
+% ============================================================
+
+\subsection{Custom Function Kaise Banate Hain}
+
+\begin{tcolorbox}[codebox=Example 14: Custom Function — LED Blink Function]
+\begin{lstlisting}
+int ledPin = 13;
+
+// Custom function banana:
+// void = kuch return nahi
+// blinkLED = function ka naam
+// (int pin, int times, int waitTime) = parameters
+void blinkLED(int pin, int times, int waitTime) {
+  for (int i = 0; i < times; i++) {
+    digitalWrite(pin, HIGH);
+    delay(waitTime);
+    digitalWrite(pin, LOW);
+    delay(waitTime);
+  }
+}
+
+// Value return karne wala function
+float voltageRead(int pin) {
+  int raw = analogRead(pin);
+  float volts = raw * (5.0 / 1023.0);
+  return volts; // Value wapas bhejo
+}
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  blinkLED(ledPin, 3, 200); // 3 baar blink karo, 200ms gap
+
+  float v = voltageRead(A0); // Voltage padhо
+  Serial.print("Voltage: ");
+  Serial.println(v);
+
+  delay(2000);
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\begin{tcolorbox}[tipbox]
+\textbf{Functions banane ke fayde:}
+\begin{itemize}
+  \item Code baar baar likhna nahi padta
+  \item Code samajhna aasaan hota hai
+  \item Ek jagah fix karo — sab jagah fix ho jaata hai
+\end{itemize}
+\end{tcolorbox}
+
+\newpage
+
+% ============================================================
+\section{Timing — millis() ka Use}
+% ============================================================
+
+\subsection{delay() vs millis()}
+
+\begin{tcolorbox}[warnbox]
+\textbf{delay() ki problem:} Jab \texttt{delay()} chal raha hota hai, Arduino \textbf{koi kaam nahi kar sakta} — button press bhi nahi padh sakta! Isliye bade programs mein \texttt{millis()} use karte hain.
+\end{tcolorbox}
+
+\begin{tcolorbox}[codebox=Example 15: millis() se Non-Blocking Blink]
+\begin{lstlisting}
+int ledPin = 13;
+bool ledState        = false; // LED ki current state
+long previousMillis  = 0;     // Pehli baar ka time
+long interval        = 1000;  // 1000ms = 1 second
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  long currentMillis = millis(); // Abhi kitna time hua (ms mein)
+
+  // Kya interval guzar gaya?
+  if (currentMillis - previousMillis >= interval) {
+    previousMillis = currentMillis; // Time save karo
+
+    ledState = !ledState;           // State toggle karo
+    digitalWrite(ledPin, ledState); // LED update karo
+  }
+
+  // Yahan aur kaam bhi kar sakte hain bina ruke!
+  // Button padhna, sensor check karna, etc.
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\begin{tcolorbox}[codebox=Example 16: millis() se Multiple Tasks Ek Saath]
+\begin{lstlisting}
+int led1 = 12, led2 = 13;
+bool state1 = false, state2 = false;
+long prev1 = 0, prev2 = 0;
+long interval1 = 500, interval2 = 1300; // Alag alag speeds
+
+void setup() {
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+}
+
+void loop() {
+  long now = millis();
+
+  // LED 1 — 500ms par blink
+  if (now - prev1 >= interval1) {
+    prev1   = now;
+    state1  = !state1;
+    digitalWrite(led1, state1);
+  }
+
+  // LED 2 — 1300ms par blink (alag speed!)
+  if (now - prev2 >= interval2) {
+    prev2   = now;
+    state2  = !state2;
+    digitalWrite(led2, state2);
+  }
+  // Dono simultaneously blink karte hain — delay() se possible nahi tha!
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\newpage
+
+% ============================================================
+\section{Sensors ke Examples}
+% ============================================================
+
+\subsection{Ultrasonic Sensor — HC-SR04}
+
+\begin{tcolorbox}[codebox=Example 17: Distance Measure karna]
+\begin{lstlisting}
+int trigPin = 9;  // Trigger pin
+int echoPin = 10; // Echo pin
+
+void setup() {
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  Serial.begin(9600);
+  Serial.println("Distance Sensor Ready");
+}
+
+float getDistance() {
+  // Trigger pulse bhejo
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  // Echo ka time measure karo
+  long duration = pulseIn(echoPin, HIGH);
+
+  // Distance calculate karo (cm mein)
+  // Sound ki speed = 343 m/s = 0.0343 cm/microsecond
+  float distance = duration * 0.0343 / 2;
+  return distance;
+}
+
+void loop() {
+  float dist = getDistance();
+
+  Serial.print("Distance: ");
+  Serial.print(dist);
+  Serial.println(" cm");
+
+  if (dist < 10) {
+    Serial.println("ALERT: Bahut paas!");
+  }
+
+  delay(500);
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\subsection{DHT11 — Temperature \& Humidity Sensor}
+
+\begin{tcolorbox}[codebox=Example 18: Temp aur Humidity Read karna]
+\begin{lstlisting}
+// Library install karo: DHT sensor library by Adafruit
+#include <DHT.h>
+
+#define DHTPIN  2     // DHT11 pin 2 par
+#define DHTTYPE DHT11 // DHT 11 ya DHT 22
+
+DHT dht(DHTPIN, DHTTYPE); // DHT object banao
+
+void setup() {
+  Serial.begin(9600);
+  dht.begin(); // Sensor shuru karo
+}
+
+void loop() {
+  delay(2000); // DHT11 ko 2 seconds chahiye
+
+  float humidity    = dht.readHumidity();    // Humidity %
+  float temperature = dht.readTemperature(); // Celsius mein
+
+  // Check karo reading sahi hai?
+  if (isnan(humidity) || isnan(temperature)) {
+    Serial.println("Sensor error!");
+    return;
+  }
+
+  Serial.print("Humidity: ");
+  Serial.print(humidity);
+  Serial.print("% | Temperature: ");
+  Serial.print(temperature);
+  Serial.println(" C");
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\newpage
+
+% ============================================================
+\section{Motor Control}
+% ============================================================
+
+\subsection{Servo Motor}
+
+\begin{tcolorbox}[codebox=Example 19: Servo Motor Control]
+\begin{lstlisting}
+#include <Servo.h> // Servo library
+
+Servo myServo; // Servo object banao
+
+void setup() {
+  myServo.attach(9); // Servo ko pin 9 se attach karo
+  Serial.begin(9600);
+}
+
+void loop() {
+  // 0 se 180 degree tak sweep karo
+  for (int angle = 0; angle <= 180; angle += 10) {
+    myServo.write(angle); // Angle set karo
+    Serial.print("Angle: ");
+    Serial.println(angle);
+    delay(100);
+  }
+
+  // 180 se 0 degree tak wapas aao
+  for (int angle = 180; angle >= 0; angle -= 10) {
+    myServo.write(angle);
+    delay(100);
+  }
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\subsection{DC Motor — L298N Motor Driver}
+
+\begin{tcolorbox}[codebox=Example 20: DC Motor Forward/Backward]
+\begin{lstlisting}
+// L298N Motor Driver pins
+int in1 = 8;  // Direction pin 1
+int in2 = 7;  // Direction pin 2
+int enA = 9;  // Enable pin (PWM — speed control)
+
+void setup() {
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+  pinMode(enA, OUTPUT);
+  Serial.begin(9600);
+}
+
+void motorForward(int speed) {
+  digitalWrite(in1, HIGH); // Aage ki taraf
+  digitalWrite(in2, LOW);
+  analogWrite(enA, speed); // Speed 0-255
+}
+
+void motorBackward(int speed) {
+  digitalWrite(in1, LOW);  // Peechhe ki taraf
+  digitalWrite(in2, HIGH);
+  analogWrite(enA, speed);
+}
+
+void motorStop() {
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, LOW);
+  analogWrite(enA, 0);
+}
+
+void loop() {
+  Serial.println("Forward...");
+  motorForward(200); // Full speed aage
+  delay(2000);
+
+  motorStop();
+  delay(500);
+
+  Serial.println("Backward...");
+  motorBackward(150); // Slow speed peechhe
+  delay(2000);
+
+  motorStop();
+  delay(1000);
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\newpage
+
+% ============================================================
+\section{Interrupts — Turant Response}
+% ============================================================
+
+\subsection{External Interrupt kya Hota Hai?}
+
+Normal \texttt{loop()} mein code upar se neeche chalta hai — koi cheez bich mein rok nahi sakti. Interrupt ek \textbf{emergency signal} hai jo loop ko rokta hai aur turant ek function chalata hai.
+
+\begin{tcolorbox}[codebox=Example 21: Button Interrupt — Instant Response]
+\begin{lstlisting}
+volatile bool ledState = false; // volatile zaroori hai interrupt mein
+
+void ledToggle() { // Yeh function interrupt par chalega
+  ledState = !ledState;
+  digitalWrite(13, ledState);
+}
+
+void setup() {
+  pinMode(13, OUTPUT);
+  pinMode(2, INPUT_PULLUP); // Pin 2 interrupt ke liye
+
+  // attachInterrupt(pin, function, when)
+  // FALLING = jab HIGH se LOW ho (button dabane par)
+  attachInterrupt(digitalPinToInterrupt(2), ledToggle, FALLING);
+
+  Serial.begin(9600);
+  Serial.println("Interrupt ready! Button dabao.");
+}
+
+void loop() {
+  // Yahan koi bhi kaam karo
+  // Button press par LED turant toggle hogi
+  // loop() ko rokna nahi padega!
+  Serial.println("Main loop chal raha hai...");
+  delay(1000);
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+\begin{tcolorbox}[notebox]
+\textbf{Interrupt mein yaad rakho:}
+\begin{itemize}
+  \item Interrupt function mein \texttt{delay()} use mat karo
+  \item Interrupt function chhota aur fast hona chahiye
+  \item Shared variables ko \keyword{volatile} likhna zaroori hai
+  \item Arduino Uno mein sirf Pin \textbf{2} aur \textbf{3} interrupt support karte hain
+\end{itemize}
+\end{tcolorbox}
+
+\newpage
+
+% ============================================================
+\section{Quick Reference Card}
+% ============================================================
+
+\subsection{Sabse Common Functions}
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{arduinoBlue!20}
+\textbf{Function} & \textbf{Parameters} & \textbf{Kaam} \\
+\hline
+\texttt{pinMode()} & pin, mode & Pin ka mode set karo \\
+\hline
+\texttt{digitalWrite()} & pin, value & Digital output bhejo \\
+\hline
+\texttt{digitalRead()} & pin & Digital input padhо \\
+\hline
+\texttt{analogWrite()} & pin, value(0-255) & PWM output bhejo \\
+\hline
+\texttt{analogRead()} & pin & Analog value padhо (0-1023) \\
+\hline
+\texttt{delay()} & milliseconds & Ruko \\
+\hline
+\texttt{millis()} & — & Ab tak ka time (ms) \\
+\hline
+\texttt{Serial.begin()} & baud rate & Serial shuru karo \\
+\hline
+\texttt{Serial.print()} & data & Print karo \\
+\hline
+\texttt{Serial.println()} & data & Print karo + newline \\
+\hline
+\texttt{map()} & val,fL,fH,tL,tH & Range badlo \\
+\hline
+\texttt{constrain()} & val, min, max & Range limit karo \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{C++ Operators Cheat Sheet}
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor{arduinoBlue!20}
+\textbf{Operator} & \textbf{Naam} & \textbf{Example} \\
+\hline
+\texttt{=} & Assignment & \texttt{x = 5} \\
+\hline
+\texttt{==} & Equal check & \texttt{if (x == 5)} \\
+\hline
+\texttt{!=} & Not equal & \texttt{if (x != 0)} \\
+\hline
+\texttt{>} , \texttt{<} & Greater/Less & \texttt{if (x > 10)} \\
+\hline
+\texttt{++} & Increment & \texttt{x++} (x = x+1) \\
+\hline
+\texttt{--} & Decrement & \texttt{x--} (x = x-1) \\
+\hline
+\texttt{\&\&} & AND & \texttt{if (a \&\& b)} \\
+\hline
+\texttt{||} & OR & \texttt{if (a || b)} \\
+\hline
+\texttt{!} & NOT & \texttt{if (!a)} \\
+\hline
+\texttt{+=} & Add assign & \texttt{x += 5} (x = x+5) \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{1cm}
+
+\begin{tcolorbox}[colback=arduinoBlue!10, colframe=arduinoBlue, title=\textbf{All the Best!}]
+\centering
+\large\sffamily
+Arduino seekhna ek exciting journey hai!\\
+Chhote examples se shuru karo, experiment karo,\\
+aur apne khud ke projects banao.\\[0.3cm]
+\textbf{Har error ek naya seekhne ka mauka hai!}
+\end{tcolorbox}
+
+\end{document}
