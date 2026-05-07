@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arduino C++ Notes — Complete Guide</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="logo-icon">⚡</span>
+        <span>Arduino<strong>Notes</strong></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#topics">Topics</a></li>
+        <li><a href="#examples">Examples</a></li>
+        <li><a href="#download">Download</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-bg">
+      <div class="grid-overlay"></div>
+      <div class="circuit-lines"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">📘 Hindi + English • Free Resource</div>
+      <h1 class="hero-title">
+        Arduino
+        <span class="title-accent">C++ Notes</span>
+      </h1>
+      <p class="hero-sub">
+        Beginner se Advanced tak — sabhi important concepts,<br />
+        21 working examples, aur Hindi comments ke saath!
+      </p>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">26</span><span class="stat-label">Pages</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">21</span><span class="stat-label">Examples</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">10</span><span class="stat-label">Topics</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">Free</span><span class="stat-label">Forever</span></div>
+      </div>
+      <div class="hero-actions">
+        <a href="arduino_notes.pdf" class="btn btn-primary" download>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          PDF Download Karo
+        </a>
+        <a href="#topics" class="btn btn-outline">Topics Dekho →</a>
+      </div>
+    </div>
+    <div class="hero-code-preview">
+      <div class="code-window">
+        <div class="code-titlebar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="code-filename">blink.ino</span>
+        </div>
+        <pre class="code-body"><code><span class="kw">void</span> <span class="fn">setup</span>() {
+  <span class="fn">pinMode</span>(<span class="cn">LED_BUILTIN</span>, <span class="cn">OUTPUT</span>);
+  <span class="cm">// Pin 13 ko output banao</span>
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="fn">digitalWrite</span>(<span class="cn">LED_BUILTIN</span>, <span class="cn">HIGH</span>);
+  <span class="fn">delay</span>(<span class="nm">1000</span>); <span class="cm">// LED ON — 1 sec</span>
+  <span class="fn">digitalWrite</span>(<span class="cn">LED_BUILTIN</span>, <span class="cn">LOW</span>);
+  <span class="fn">delay</span>(<span class="nm">1000</span>); <span class="cm">// LED OFF — 1 sec</span>
+}</code></pre>
+      </div>
+    </div>
+  </header>
+
+  <!-- TOPICS SECTION -->
+  <section class="section" id="topics">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Kya Sikhoge?</span>
+        <h2>Topics Covered</h2>
+        <p>Sabhi important Arduino concepts ek hi jagah — sequentially explained</p>
+      </div>
+      <div class="topics-grid">
+
+        <div class="topic-card" data-delay="0">
+          <div class="topic-icon">💡</div>
+          <h3>Digital I/O</h3>
+          <p>LED blink, multiple LEDs, button press, toggle switch — digital pins ka poora use</p>
+          <div class="topic-examples">4 Examples</div>
+        </div>
+
+        <div class="topic-card" data-delay="1">
+          <div class="topic-icon">🎛️</div>
+          <h3>Analog I/O</h3>
+          <p>Potentiometer, analogRead/Write, map() function, voltage calculation</p>
+          <div class="topic-examples">2 Examples</div>
+        </div>
+
+        <div class="topic-card" data-delay="2">
+          <div class="topic-icon">📡</div>
+          <h3>Serial Communication</h3>
+          <p>Serial Monitor se data print karo, computer se commands lo</p>
+          <div class="topic-examples">2 Examples</div>
+        </div>
+
+        <div class="topic-card" data-delay="3">
+          <div class="topic-icon">📦</div>
+          <h3>Variables &amp; Data Types</h3>
+          <p>int, float, bool, char, String, arrays — C++ ke sab data types</p>
+          <div class="topic-examples">2 Examples</div>
+        </div>
+
+        <div class="topic-card" data-delay="4">
+          <div class="topic-icon">🔀</div>
+          <h3>Control Structures</h3>
+          <p>if/else, for loop, while loop — decision making aur repetition</p>
+          <div class="topic-examples">3 Examples</div>
+        </div>
+
+        <div class="topic-card" data-delay="5">
+          <div class="topic-icon">🔧</div>
+          <h3>Functions</h3>
+          <p>Khud ka function banana, parameters, return values</p>
+          <div class="topic-examples">1 Example</div>
+        </div>
+
+        <div class="topic-card" data-delay="6">
+          <div class="topic-icon">⏱️</div>
+          <h3>Timing — millis()</h3>
+          <p>delay() vs millis(), non-blocking code, multiple tasks ek saath</p>
+          <div class="topic-examples">2 Examples</div>
+        </div>
+
+        <div class="topic-card" data-delay="7">
+          <div class="topic-icon">🌡️</div>
+          <h3>Sensors</h3>
+          <p>HC-SR04 ultrasonic distance, DHT11 temperature &amp; humidity sensor</p>
+          <div class="topic-examples">2 Examples</div>
+        </div>
+
+        <div class="topic-card" data-delay="8">
+          <div class="topic-icon">⚙️</div>
+          <h3>Motor Control</h3>
+          <p>Servo motor sweep, DC motor forward/backward with L298N</p>
+          <div class="topic-examples">2 Examples</div>
+        </div>
+
+        <div class="topic-card" data-delay="9">
+          <div class="topic-icon">🚨</div>
+          <h3>Interrupts</h3>
+          <p>External interrupt, volatile keyword, instant button response</p>
+          <div class="topic-examples">1 Example</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CODE EXAMPLES SECTION -->
+  <section class="section section-dark" id="examples">
+    <div class="container">
+      <div class="section-header light">
+        <span class="section-tag">Code Dekho</span>
+        <h2>Example Snippets</h2>
+        <p>Kuch examples jo notes mein hain — try karo!</p>
+      </div>
+      <div class="examples-tabs">
+        <div class="tab-buttons">
+          <button class="tab-btn active" data-tab="blink">LED Blink</button>
+          <button class="tab-btn" data-tab="button">Button</button>
+          <button class="tab-btn" data-tab="analog">Analog</button>
+          <button class="tab-btn" data-tab="millis">millis()</button>
+          <button class="tab-btn" data-tab="servo">Servo</button>
+        </div>
+        <div class="tab-content">
+
+          <div class="tab-pane active" id="tab-blink">
+            <div class="example-meta">
+              <span class="ex-tag">Example 1</span>
+              <span class="ex-title">LED Blink — Pehla Program!</span>
+            </div>
+            <pre class="code-block"><code><span class="cm">// Pin 13 par LED lagaao</span>
+<span class="kw">int</span> ledPin = <span class="nm">13</span>;
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  <span class="fn">pinMode</span>(ledPin, <span class="cn">OUTPUT</span>); <span class="cm">// ledPin ko output banao</span>
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="fn">digitalWrite</span>(ledPin, <span class="cn">HIGH</span>); <span class="cm">// LED ON</span>
+  <span class="fn">delay</span>(<span class="nm">500</span>);                  <span class="cm">// 0.5 second ruko</span>
+  <span class="fn">digitalWrite</span>(ledPin, <span class="cn">LOW</span>);  <span class="cm">// LED OFF</span>
+  <span class="fn">delay</span>(<span class="nm">500</span>);                  <span class="cm">// 0.5 second ruko</span>
+}</code></pre>
+          </div>
+
+          <div class="tab-pane" id="tab-button">
+            <div class="example-meta">
+              <span class="ex-tag">Example 3</span>
+              <span class="ex-title">Button se LED Control</span>
+            </div>
+            <pre class="code-block"><code><span class="kw">int</span> buttonPin = <span class="nm">2</span>;   <span class="cm">// Button pin 2 par</span>
+<span class="kw">int</span> ledPin    = <span class="nm">13</span>;  <span class="cm">// LED pin 13 par</span>
+<span class="kw">int</span> buttonState;
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  <span class="fn">pinMode</span>(buttonPin, <span class="cn">INPUT</span>);
+  <span class="fn">pinMode</span>(ledPin, <span class="cn">OUTPUT</span>);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  buttonState = <span class="fn">digitalRead</span>(buttonPin);
+
+  <span class="kw">if</span> (buttonState == <span class="cn">HIGH</span>) {
+    <span class="fn">digitalWrite</span>(ledPin, <span class="cn">HIGH</span>); <span class="cm">// LED ON</span>
+  } <span class="kw">else</span> {
+    <span class="fn">digitalWrite</span>(ledPin, <span class="cn">LOW</span>);  <span class="cm">// LED OFF</span>
+  }
+}</code></pre>
+          </div>
+
+          <div class="tab-pane" id="tab-analog">
+            <div class="example-meta">
+              <span class="ex-tag">Example 5</span>
+              <span class="ex-title">Potentiometer se LED Brightness</span>
+            </div>
+            <pre class="code-block"><code><span class="kw">int</span> potPin    = <span class="cn">A0</span>;  <span class="cm">// Potentiometer A0 par</span>
+<span class="kw">int</span> ledPin    = <span class="nm">9</span>;   <span class="cm">// LED PWM pin par</span>
+<span class="kw">int</span> potValue;
+<span class="kw">int</span> brightness;
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  <span class="fn">pinMode</span>(ledPin, <span class="cn">OUTPUT</span>);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  potValue   = <span class="fn">analogRead</span>(potPin);   <span class="cm">// 0 se 1023</span>
+  brightness = potValue / <span class="nm">4</span>;          <span class="cm">// 0 se 255</span>
+  <span class="fn">analogWrite</span>(ledPin, brightness);    <span class="cm">// Brightness set</span>
+  <span class="fn">delay</span>(<span class="nm">100</span>);
+}</code></pre>
+          </div>
+
+          <div class="tab-pane" id="tab-millis">
+            <div class="example-meta">
+              <span class="ex-tag">Example 15</span>
+              <span class="ex-title">millis() — Non-Blocking Blink</span>
+            </div>
+            <pre class="code-block"><code><span class="kw">int</span>  ledPin        = <span class="nm">13</span>;
+<span class="kw">bool</span> ledState      = <span class="cn">false</span>;
+<span class="kw">long</span> previousMillis = <span class="nm">0</span>;
+<span class="kw">long</span> interval       = <span class="nm">1000</span>;
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  <span class="fn">pinMode</span>(ledPin, <span class="cn">OUTPUT</span>);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">long</span> currentMillis = <span class="fn">millis</span>();
+
+  <span class="kw">if</span> (currentMillis - previousMillis >= interval) {
+    previousMillis = currentMillis;
+    ledState = !ledState;           <span class="cm">// Toggle</span>
+    <span class="fn">digitalWrite</span>(ledPin, ledState);
+  }
+  <span class="cm">// Yahan aur kaam bhi kar sakte hain!</span>
+}</code></pre>
+          </div>
+
+          <div class="tab-pane" id="tab-servo">
+            <div class="example-meta">
+              <span class="ex-tag">Example 19</span>
+              <span class="ex-title">Servo Motor Sweep</span>
+            </div>
+            <pre class="code-block"><code><span class="pp">#include</span> <span class="st">&lt;Servo.h&gt;</span>
+
+<span class="cn">Servo</span> myServo;
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  myServo.<span class="fn">attach</span>(<span class="nm">9</span>); <span class="cm">// Pin 9 se attach</span>
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="cm">// 0 se 180 degree tak sweep</span>
+  <span class="kw">for</span> (<span class="kw">int</span> a = <span class="nm">0</span>; a <= <span class="nm">180</span>; a += <span class="nm">10</span>) {
+    myServo.<span class="fn">write</span>(a);
+    <span class="fn">delay</span>(<span class="nm">100</span>);
+  }
+  <span class="cm">// 180 se 0 tak wapas</span>
+  <span class="kw">for</span> (<span class="kw">int</span> a = <span class="nm">180</span>; a >= <span class="nm">0</span>; a -= <span class="nm">10</span>) {
+    myServo.<span class="fn">write</span>(a);
+    <span class="fn">delay</span>(<span class="nm">100</span>);
+  }
+}</code></pre>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD SECTION -->
+  <section class="section" id="download">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Free Download</span>
+        <h2>Notes Download Karo</h2>
+        <p>PDF aur LaTeX source — dono free mein available hain</p>
+      </div>
+      <div class="download-cards">
+
+        <div class="download-card featured">
+          <div class="download-icon">📄</div>
+          <h3>PDF Notes</h3>
+          <p>Ready-to-read formatted notes. Phone, tablet ya computer — sab par kaam karega.</p>
+          <ul class="download-features">
+            <li>✅ 26 pages, fully formatted</li>
+            <li>✅ Syntax highlighted code</li>
+            <li>✅ Hindi comments</li>
+            <li>✅ Tables &amp; diagrams</li>
+          </ul>
+          <a href="arduino_notes.pdf" class="btn btn-primary" download>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            PDF Download
+          </a>
+        </div>
+
+        <div class="download-card">
+          <div class="download-icon">📝</div>
+          <h3>LaTeX Source</h3>
+          <p>XeLaTeX source file. Edit karo, customize karo, apne naam se compile karo!</p>
+          <ul class="download-features">
+            <li>✅ Full XeLaTeX source</li>
+            <li>✅ Easily editable</li>
+            <li>✅ Add your own examples</li>
+            <li>✅ Recompile anytime</li>
+          </ul>
+          <a href="arduino_notes.tex" class="btn btn-outline" download>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            .tex Download
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="section section-dark" id="about">
+    <div class="container about-container">
+      <div class="about-text">
+        <span class="section-tag">About</span>
+        <h2>Yeh Notes Kiske Liye Hain?</h2>
+        <p>Yeh notes un students ke liye banaye gaye hain jo Arduino programming shuru karna chahte hain. Har concept ko simple Hindi mein explain kiya gaya hai taaki koi bhi aasani se samajh sake.</p>
+        <p>Chahe aap school mein ho ya college mein — yeh notes aapke liye helpful rahenge.</p>
+        <div class="about-tags">
+          <span class="tag">🎓 Students</span>
+          <span class="tag">🔰 Beginners</span>
+          <span class="tag">🇮🇳 Hindi Speakers</span>
+          <span class="tag">⚡ Arduino Lovers</span>
+        </div>
+      </div>
+      <div class="about-how">
+        <h3>LaTeX se Compile Kaise Karo?</h3>
+        <div class="steps">
+          <div class="step">
+            <span class="step-num">1</span>
+            <div>
+              <strong>XeLaTeX Install karo</strong>
+              <p>MiKTeX (Windows) ya TeX Live (Linux/Mac)</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">2</span>
+            <div>
+              <strong>.tex file download karo</strong>
+              <p>Upar diye download button se</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">3</span>
+            <div>
+              <strong>Command chalao</strong>
+              <div class="inline-code">xelatex arduino_notes.tex</div>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">4</span>
+            <div>
+              <strong>PDF ready!</strong>
+              <p>Same folder mein PDF ban jaayegi</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="logo-icon">⚡</span>
+          <span>Arduino<strong>Notes</strong></span>
+        </div>
+        <p class="footer-copy">Free for all students. Share karo — knowledge badhao! 🚀</p>
+        <div class="footer-links">
+          <a href="arduino_notes.pdf" download>PDF Download</a>
+          <a href="arduino_notes.tex" download>LaTeX Source</a>
+          <a href="#topics">Topics</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
